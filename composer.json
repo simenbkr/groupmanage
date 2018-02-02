@@ -1,0 +1,8 @@
+{
+    "name": "simenbkr/groupmanage",
+    "description": "For managing Google Groups",
+    "require": {
+        "php": "^7.0",
+        "google/apiclient": "^2.0"
+    }
+}
