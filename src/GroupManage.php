@@ -93,14 +93,20 @@ class GroupManage
         $member->setEmail($email);
         $member->setRole($role);
         
-        $added = $this->service->members->insert($group, $member);
-        
-        return $added;
+        if(!$this->inGroup($email, $group)) {
+            $this->service->members->insert($group, $member);
+            return true;
+        }
+        return false;
     }
     
     public function removeFromGroup($email, $group)
     {
-        return $this->service->members->delete($group, $email);
+        if($this->inGroup($email, $group)) {
+            $this->service->members->delete($group, $email);
+            return true;
+        }
+        return false;
     }
     
     public function inGroup($email, $group)
