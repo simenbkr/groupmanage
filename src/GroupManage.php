@@ -1,7 +1,7 @@
 <?php
 //require_once __DIR__ . '/vendor/autoload.php';
 
-namespace GroupManage;
+namespace Group;
 
 define('APPLICATION_NAME', 'PHP Groupmanage');
 define('CREDENTIALS_PATH', __DIR__ . '/credentials/groupmanage-creds.json');
