@@ -7,7 +7,7 @@ define('APPLICATION_NAME', 'PHP Groupmanage');
 define('CREDENTIALS_PATH', __DIR__ . '/credentials/groupmanage-creds.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 define('SCOPES', implode(' ', array(
-        Google_Service_Directory::ADMIN_DIRECTORY_GROUP)
+        \Google_Service_Directory::ADMIN_DIRECTORY_GROUP)
 ));
 
 /*
@@ -25,16 +25,16 @@ class GroupManage
     public function __construct()
     {
         $this->client = $this->getClient();
-        $this->service = $service = new Google_Service_Directory($this->client);
+        $this->service = $service = new \Google_Service_Directory($this->client);
     }
     
     /**
      * Returns an authorized API client.
-     * @return Google_Client the authorized client object
+     * @return \Google_Client the authorized client object
      */
     private function getClient()
     {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         $client->setApplicationName(APPLICATION_NAME);
         $client->setScopes(SCOPES);
         $client->setAuthConfig(CLIENT_SECRET_PATH);
@@ -89,7 +89,7 @@ class GroupManage
     public function addToGroup($email, $role, $group)
     {
         
-        $member = new Google_Service_Directory_Member();
+        $member = new \Google_Service_Directory_Member();
         $member->setEmail($email);
         $member->setRole($role);
         
