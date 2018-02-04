@@ -1,8 +1,21 @@
 {
+    "license": "GPLv3",
+    "type": "library",
     "name": "simenbkr/groupmanage",
     "description": "For managing Google Groups",
     "require": {
         "php": "^7.0",
         "google/apiclient": "^2.0"
-    }
+    },
+    "autoload": {
+        "psr-4": {
+            "GroupManage": "src/"
+        }
+    },
+    "authors" : [
+        {
+            "name": "simenbkr",
+            "role": "Developer"
+        }
+    ]
 }
