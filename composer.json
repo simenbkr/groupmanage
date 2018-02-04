@@ -1,5 +1,5 @@
 {
-    "license": "GPLv3",
+    "license": "GPL-3.0-only",
     "type": "library",
     "name": "simenbkr/groupmanage",
     "description": "For managing Google Groups",
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "GroupManage": "src/"
+            "GroupManage\\": "src/"
         }
     },
     "authors" : [
