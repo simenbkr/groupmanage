@@ -90,6 +90,7 @@ class GroupManage
     {
         
         $member = new \Google_Service_Directory_Member();
+        $email = strtolower(str_replace(' ','', $email));
         $member->setEmail($email);
         $member->setRole($role);
         
