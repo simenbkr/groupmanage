@@ -1,5 +1,4 @@
 <?php
-//require_once __DIR__ . '/vendor/autoload.php';
 
 namespace Group;
 
@@ -123,7 +122,29 @@ class GroupManage
     
     public function listGroup($group, $count = 200)
     {
-        $parameters = array('maxResults' => $count);
-        return $this->service->members->listMembers($group, $parameters)['members'];
+        if ($count <= 200) {
+            return $this->service->members->listMembers($group)['members'];
+        }
+
+        $max_per_page = 200;
+        $members = array();
+        $fetched = 0;
+        $parameters = array('maxResults' => $max_per_page);
+
+        do {
+            $m = $this->service->members->listMembers($group, $parameters);
+            $members = array_merge($members, $m['members']);
+            $fetched += count($m['members']);
+            $page_token = $m['nextPageToken'];
+
+            if($count - $fetched <= 0) {
+                break;
+            }
+
+            $parameters['maxResults'] = min(200, $count - $fetched);
+            $parameters['pageToken'] = $page_token;
+        } while (strlen($page_token) > 0 || $fetched > $count);
+
+        return $members;
     }
 }
