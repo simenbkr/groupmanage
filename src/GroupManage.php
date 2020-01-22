@@ -85,7 +85,6 @@ class GroupManage
         return str_replace('~', realpath($homeDirectory), $path);
     }
     
-    
     public function addToGroup($email, $role, $group)
     {
         
@@ -122,11 +121,9 @@ class GroupManage
         return false;
     }
     
-    public function listGroup($group)
+    public function listGroup($group, $count = 200)
     {
-        return $this->service->members->listMembers($group)['members'];
+        $parameters = array('maxResults' => $count);
+        return $this->service->members->listMembers($group, $parameters)['members'];
     }
 }
-
-
-?>
