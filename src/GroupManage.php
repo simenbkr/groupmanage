@@ -110,13 +110,23 @@ class GroupManage
     
     public function inGroup($email, $group)
     {
-        
+        $first = explode('@', $email)[0];
+        $last = explode('@', $email)[1];
+
+        $possible_emails = array(
+            $email,
+            str_replace('.','', $first) .   '@' . $last,
+            str_replace('+','', $first) .   '@' . $last,
+            str_replace('\\', '', $first) . '@' . $last,
+            str_replace('/', '', $first) .  '@' . $last
+        );
+
         foreach ($this->listGroup($group) as $person) {
-            if ($person['email'] === $email) {
+            if (in_array($person['email'], $possible_emails)) {
                 return true;
             }
         }
-        
+
         return false;
     }
     
